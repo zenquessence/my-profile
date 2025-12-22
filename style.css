@@ -52,7 +52,39 @@ body {
     align-items: center;
     line-height: 1.6;
     padding: 2rem 1rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Background image with blur */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('rezeee.jpg') center/cover no-repeat;
+    filter: blur(8px) brightness(0.7);
+    z-index: -2;
+}
+
+/* Overlay that changes with theme */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+    transition: background 0.3s ease;
+}
+
+/* Light theme overlay */
+[data-theme="light"] body::after {
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .container {
@@ -63,13 +95,19 @@ body {
 
 /* Profile section */
 .profile {
-    background-color: var(--card-bg);
+    background-color: rgba(255, 255, 255, 0.85);
     border-radius: 12px;
     padding: 3rem 2.5rem;
     box-shadow: var(--shadow);
     margin-bottom: 2rem;
-    border: 1px solid var(--border-color);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .profile {
+    background-color: rgba(30, 30, 30, 0.85);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .profile-img {
